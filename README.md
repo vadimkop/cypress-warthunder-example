@@ -1,1 +1,1 @@
-Website autotest example (https://warthunder.com)
+Cypress autotest example (https://warthunder.com)
