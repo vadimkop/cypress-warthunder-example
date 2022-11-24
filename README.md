@@ -1,1 +1,1 @@
-# cypress-warthunder-example
+Website autotest example (https://warthunder.com)
