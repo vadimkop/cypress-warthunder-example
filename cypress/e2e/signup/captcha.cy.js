@@ -11,6 +11,9 @@ describe("Tests for captcha", () => {
     cy.fixture('login').then((login) => {
       this.login = login
     })
+    cy.fixture('api').then((api) => {
+      this.api = api
+    })
 
     cy.log('Open main page')
     cy.visit('/')
@@ -39,7 +42,9 @@ describe("Tests for captcha", () => {
       cy.get('.reg-form__checkbox-animation').click()
 
       cy.log('Click create account')
+      cy.intercept('POST', this.api.auth).as('apiCheck')
       cy.get('.no-bonus > div > .btn').click()
+      .wait('@apiCheck').its('response.statusCode').should('eq', 200)
       cy.get('.reg-form__line--code > span > .error').should('be.visible')
     })
   })
